@@ -1,0 +1,28 @@
+{
+  "manifest_version": 2,
+  "name": "GitKraken Glo Chrome Extension",
+  "description": "...",
+  "version": "0.0.1",
+  "browser_action": {
+    "default_popup": "index.html",
+    "default_title": "Open app"
+  },
+  "icons": { 
+    "16": "logo-small.png",
+    "48": "logo-small.png",
+    "128": "logo-small.png"
+  },
+  "background": {
+    "scripts": ["background.js"],
+    "persiste0nt": false
+  },
+  "content_security_policy": "script-src 'self' 'sha256-5As4+3YpY62+l38PsxCEkjB1R4YtyktBtRScTJ3fyLU='; object-src 'self'", 
+  "permissions": [
+    "contextMenus",
+    "identity",
+    "storage", 
+    "*://*.google.com/*",
+    "*://*.github.com/*",
+    "*://*.gitkraken.com/*"
+  ]
+}
