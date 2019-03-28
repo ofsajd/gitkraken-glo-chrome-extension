@@ -21,6 +21,7 @@
     "contextMenus",
     "identity",
     "storage", 
+    "activeTab",
     "*://*.google.com/*",
     "*://*.github.com/*",
     "*://*.gitkraken.com/*"

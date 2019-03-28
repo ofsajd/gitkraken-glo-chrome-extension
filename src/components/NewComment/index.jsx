@@ -16,7 +16,6 @@ export default class NewComment extends Component{
   }
 
   render(){
-    console.log("NEWCAR.PROPS", this.props);
     return (
       <div>
         <BoardsListContainer />

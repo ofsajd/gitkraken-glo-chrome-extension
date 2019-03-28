@@ -16,7 +16,7 @@ chrome.runtime.onMessage.addListener(async request => {
 
 
 function openPopup(info){
-  var win = window.open("index.html", "extension_popup", "width=300,height=400,status=no,scrollbars=yes,resizable=no");
+  var win = window.open("index.html", "extension_popup", "width=600,height=600,status=no,scrollbars=yes,resizable=no");
   win.onload = function() {
     chrome.runtime.sendMessage(info);
   }
@@ -27,8 +27,16 @@ function openPopup(info){
   //     }
   //  });
   // });
+}
 
- 
+function takeScreenshot(info){
+  chrome.tabs.captureVisibleTab(null, {}, function (image) {
+    var win = window.open("index.html", "extension_popup", "width=600,height=600,status=no,scrollbars=yes,resizable=no");
+    win.onload = function() {
+      info.image = image;
+      chrome.runtime.sendMessage(info);
+    }
+  });
 }
 
 chrome.contextMenus.create({
@@ -55,5 +63,5 @@ chrome.contextMenus.create({
   id: "screenshot",
   parentId: "mainMenu",
   contexts: ["all"],
-  onclick: openPopup
+  onclick: takeScreenshot
 });

@@ -5,6 +5,7 @@ import { isProduction } from './../../helpers/env';
 import SignInContainer from '../../containers/SignInContainer';
 import NewCardContainer from '../../containers/NewCard';
 import NewCommentContainer from '../../containers/NewComment';
+import ScreenshotContainer from '../../containers/Screenshot';
 
 class MainComponent extends Component {
   constructor(props) {
@@ -41,7 +42,7 @@ class MainComponent extends Component {
   }
 
   get screenshot(){
-    return <h1>New screenshot component</h1>;
+    return <ScreenshotContainer info={this.state.info} />;
   }
 
   get authenticatedContent(){

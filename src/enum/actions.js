@@ -12,6 +12,7 @@ const actions = {
   SET_MEMBERS: 'SET_MEMEBERS',
   SET_CARDS: 'SET_CARDS',
   SET_CURRENT_CARD: 'SET_CURRENT_CARD',
+  SAVE_ATTACHMENT: 'SAVE_ATTACHMENT',
 }
 
 export default actions;

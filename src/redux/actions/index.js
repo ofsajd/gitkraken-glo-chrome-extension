@@ -24,3 +24,4 @@ export * from './Token';
 export * from './Boards';
 export * from './Cards';
 export * from './Comments';
+export * from './Attachments';
