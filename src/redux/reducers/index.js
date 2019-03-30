@@ -8,6 +8,8 @@ import labels from './labels';
 import members from './members';
 import cards from './cards';
 import currentCard from './cards/current';
+import currentStep from './currentStep/index';
+import success from './success/index';
 
 const reducers = combineReducers({
   authenticated,
@@ -19,6 +21,8 @@ const reducers = combineReducers({
   members,
   cards,
   currentCard,
+  currentStep,
+  success,
 });
 
 export default reducers;

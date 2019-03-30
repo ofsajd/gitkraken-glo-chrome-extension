@@ -5,6 +5,7 @@ import MainComponent from '../../components/Main';
 const mapStateToProps = (state) => {
   return {
     authenticated: state.get('authenticated'),
+    success: state.get('success'),
   }
 }
 

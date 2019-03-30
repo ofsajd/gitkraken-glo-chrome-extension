@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { setCurrentCard } from './../../redux/actions';
+import { setCurrentCard, setCurrentStep } from './../../redux/actions';
 import CardsListComponent from '../../components/CardsList';
 
 const mapStateToProps = (state, props) => {
@@ -7,15 +7,19 @@ const mapStateToProps = (state, props) => {
     currentBoard: state.get('currentBoard'),
     currentColumn: state.get('currentColumn'),
     currentCard: state.get('currentCard'),
+    currentStep: state.get('currentStep'),
     cards: state.get('cards'),
     props,
   }
 }
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = (dispatch, props) => {
   return {
     selectCard: (card) => {
       dispatch(setCurrentCard(card));
+      if(props.next){
+        dispatch(setCurrentStep(props.next));
+      }
     }
   }
 }

@@ -1,14 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { ListItemBox, ListItemLabel } from './styles';
 
 const ListItemComponent = ({item, selectAction}) => {
   const clickHandler = () => {
     selectAction(item);
   }
   return (
-    <div>
-      <div onClick={clickHandler}>{item.name}</div>
-    </div>
+    <ListItemBox onClick={clickHandler}>
+      <ListItemLabel>{item.name}</ListItemLabel>
+    </ListItemBox>
   )
 }
 

@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import ListItemComponent from '../Common/ListItem';
-import NewBoardComponent from '../Common/NewListItem';
+import NewListItemComponent from '../Common/NewListItem';
 import Board from '../../models/Board';
+import { ListBox } from '../Common/styles';
+import { Headline2 } from '../../styles/common/Headlines';
 
 export default class BoardsListComponent extends Component {
   constructor(props) {
@@ -26,11 +28,11 @@ export default class BoardsListComponent extends Component {
   render() { 
     const { createBoard } = this.props;
     return ( 
-      <div>
-        <h1>Boards</h1>
-        <NewBoardComponent createHandler={createBoard} />
+      <ListBox>
+        <Headline2>Create or select board</Headline2>
+        <NewListItemComponent createHandler={createBoard} placehodler="Enter board name" label="save" />
         { this.content }
-      </div>
+      </ListBox>
      );
   }
 }

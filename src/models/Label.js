@@ -1,4 +1,5 @@
 import PartialUser from "./PartialUser";
+import Color from './Color';
 
 export default class Label {
   constructor({
@@ -14,7 +15,7 @@ export default class Label {
   }) {
     this.id = id;
     this.name = name;
-    this.color = new color(color);
+    this.color = new Color(color);
     this.created_by = new PartialUser(created_by);
   }
 }

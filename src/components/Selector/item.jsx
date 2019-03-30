@@ -1,11 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { SelectorButton } from './styles';
 
-const SelectorItem = ({label, isSelected, clickHandler}) => {
+const SelectorItem = ({label, isSelected, clickHandler, color}) => {
+  console.log(color);
   return (
-    <button onClick={clickHandler} className={`label${isSelected ? 'selected' : ''}`}>
+    <SelectorButton onClick={clickHandler} isSelected={isSelected} color={color} >
       { label }
-    </button>
+    </SelectorButton>
   );
 }
 
@@ -15,10 +17,12 @@ SelectorItem.propTypes = {
   label: PropTypes.string,
   isSelected: PropTypes.bool,
   clickHandler: PropTypes.func,
+  color: PropTypes.oneOfType([PropTypes.string, PropTypes.bool])
 };
 
 SelectorItem.defaultProps = {
   label: '',
   isSelected: false,
   clickHandler: () => {},
+  color: false,
 };

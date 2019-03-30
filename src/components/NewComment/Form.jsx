@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { Textarea, Label } from '../../styles/common/Inputs';
+import { Button } from '../../styles/common/Buttons';
+import { FormBox } from '../../styles/common/Form';
 
 class NewCommentForm extends Component {
   constructor(props) {
@@ -18,7 +21,7 @@ class NewCommentForm extends Component {
 
   formatDescription(info){
     let description = '';
-    description += `SOURCE URL: ${info.pageUrl} \n\n\n`
+    description += `### SOURCE URL: \n ${info.pageUrl} \n\n`
     // Image || media detection
     if(info.hasOwnProperty('srcUrl') && info.hasOwnProperty('mediaType')){
       if(info.mediaType === 'image'){
@@ -30,6 +33,7 @@ class NewCommentForm extends Component {
     // Selected text
     if(info.hasOwnProperty('selectionText')){
       const paragraphs = info.selectionText.split('\n');
+      description += `### SELECTED TEXT: \n`
       paragraphs.map(p => {
         description += `> ${p} \n`;
       });
@@ -51,10 +55,11 @@ class NewCommentForm extends Component {
 
   render() { 
     return ( 
-      <div>
-        <textarea name="description" onChange={this.setValue} value={this.state.description} />
-        <button onClick={this.submit}>Save</button>
-      </div>
+      <FormBox>
+        <Label htmlFor='description'>Card Description (Markdown syntax)</Label>
+        <Textarea placeholder="Enter card description" row="10" name="description" id="description" onChange={this.setValue} value={this.state.description} />
+        <Button onClick={this.submit}>Save</Button>
+      </FormBox>
      );
   }
 }

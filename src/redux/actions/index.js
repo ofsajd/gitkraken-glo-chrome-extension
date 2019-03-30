@@ -20,6 +20,10 @@ export const setLabels = createAction(actions.SET_LABELS);
 
 export const setMembers = createAction(actions.SET_MEMBERS);
 
+export const setCurrentStep = createAction(actions.SET_CURRENT_STEP);
+
+export const setSuccess = createAction(actions.SET_SUCCESS);
+
 export * from './Token';
 export * from './Boards';
 export * from './Cards';

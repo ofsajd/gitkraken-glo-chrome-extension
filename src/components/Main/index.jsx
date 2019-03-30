@@ -8,6 +8,7 @@ import NewCommentContainer from '../../containers/NewComment';
 import ScreenshotContainer from '../../containers/Screenshot';
 import { App } from './styles/index';
 import { Headline1 } from '../../styles/common/Headlines';
+import PopupComponent from '../Common/Popup';
 
 class MainComponent extends Component {
   constructor(props) {
@@ -62,9 +63,10 @@ class MainComponent extends Component {
   }
 
   render() { 
+    const { success } = this.props;
     return ( 
       <App>
-        <Headline1>GitKraken Glo Chrome extension</Headline1>
+        <PopupComponent visible={success} />
         { this.content }
       </App>
      );

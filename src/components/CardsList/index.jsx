@@ -4,6 +4,8 @@ import ListItemComponent from '../Common/ListItem';
 import Card from '../../models/Card';
 import Column from '../../models/Column';
 import Board from '../../models/Board';
+import { ListBox } from '../Common/styles/index';
+import { Headline2 } from '../../styles/common/Headlines';
 
 export default class CardsListComponent extends Component {
   constructor(props) {
@@ -22,10 +24,10 @@ export default class CardsListComponent extends Component {
 
   render() { 
     return ( 
-      <div>
-        <h1>cards</h1>
+      <ListBox>
+        <Headline2>cards</Headline2>
         { this.content }
-      </div>
+      </ListBox>
      );
   }
 }

@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { saveAttachment } from '../../redux/actions';
+import { saveAttachment, setCurrentStep } from '../../redux/actions';
 import ScreenshotComponent from '../../components/Screenshot';
 
 const mapStateToProps = (state, props) => {
@@ -7,11 +7,17 @@ const mapStateToProps = (state, props) => {
     currentBoard: state.get('currentBoard'),
     currentColumn: state.get('currentrColumn'),
     currentCard: state.get('currentCard'),
+    currentStep: state.get('currentStep'),
     props,
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
+  return {
+    setCurrentStep: (stepName) => {
+      dispatch(setCurrentStep(stepName));
+    }
+  }
 }
 
 const ScreenshotContainer = connect(

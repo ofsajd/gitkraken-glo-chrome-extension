@@ -1,6 +1,6 @@
 import axios from "axios";
 import { base_url } from './../../../helpers/env';
-import { setCards } from './../index';
+import { setCards, setSuccess } from './../index';
 
 const requestParams = {
   params: {
@@ -47,7 +47,7 @@ export function createCard({boardId, name, description, columnId, assignees, lab
   return dispatch => {
     axios.post(`${base_url}/boards/${boardId}/cards`, requestData , requestHeader).then(response => {
       if(response.status === 201){
-        alert('Card has been added!')
+        dispatch(setSuccess());
       }else{
         console.error(response.data.message);
       }

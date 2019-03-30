@@ -1,6 +1,11 @@
 import React, { Component, Fragment } from 'react';
+import { Input, Label } from '../../styles/common/Inputs';
+import { NewListItemBox } from './styles';
+import { PropTypes } from 'prop-types';
+import { Button } from '../../styles/common/Buttons';
 
-export default class NewBoardComponent extends Component{
+
+export default class NewListItemComponent extends Component{
   constructor(props){
     super(props);
     this.state ={
@@ -21,12 +26,27 @@ export default class NewBoardComponent extends Component{
   }
 
   render(){
+    const {placeholder, label} = this.props;
     return (
       <Fragment>
-        <input type="text" value={this.state.name} onChange={this.setName} />
-        <button onClick={this.createBoard}>Create new board</button>
+        <Label htmlFor='name'>Card name</Label>
+        <NewListItemBox>
+          <Input placeholder={placeholder} type="text" value={this.state.name} onChange={this.setName} />
+          <Button onClick={this.createBoard}>{label}</Button> 
+        </NewListItemBox>
       </Fragment>
     )
   }
 }
 
+NewListItemComponent.propTypes = {
+  placeholder: PropTypes.string,
+  label: PropTypes.string,
+  createHandler: PropTypes.func,
+}
+
+NewListItemComponent.defaultProps = {
+  placeholder: '',
+  label: '',
+  createHandler: () => {},
+}

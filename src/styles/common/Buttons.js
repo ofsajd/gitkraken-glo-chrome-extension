@@ -10,6 +10,7 @@ export const Button = styled.button`
   border-radius: 2px;
   cursor: pointer;
   transition: all .2s ease-in-out;
+  text-transform: uppercase;
   &:hover{
     background-color: ${props => props.theme.color.button_background_hover}
   }

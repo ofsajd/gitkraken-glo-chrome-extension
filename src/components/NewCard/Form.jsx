@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import LabelsSelectorContainer from '../../containers/Selectors/Labels';
 import MembersSelectorContainer from '../../containers/Selectors/Members';
+import { Input, Textarea, Label } from '../../styles/common/Inputs';
+import { Button } from '../../styles/common/Buttons';
+import { FormBox } from '../../styles/common/Form';
 
 class NewCardForm extends Component {
   constructor(props) {
@@ -26,7 +29,7 @@ class NewCardForm extends Component {
 
   formatDescription(info){
     let description = '';
-    description += `SOURCE URL: ${info.pageUrl} \n\n\n`
+    description += `### SOURCE URL: \n ${info.pageUrl} \n\n`
     // Image || media detection
     if(info.hasOwnProperty('srcUrl') && info.hasOwnProperty('mediaType')){
       if(info.mediaType === 'image'){
@@ -38,6 +41,7 @@ class NewCardForm extends Component {
     // Selected text
     if(info.hasOwnProperty('selectionText')){
       const paragraphs = info.selectionText.split('\n');
+      description += `### SELECTED TEXT: \n`
       paragraphs.map(p => {
         description += `> ${p} \n`;
       });
@@ -71,14 +75,17 @@ class NewCardForm extends Component {
 
   render() { 
     return ( 
-      <div>
-        <input name="name" onChange={this.setValue} type="text" value={this.state.name} />
-        <textarea name="description" onChange={this.setValue} value={this.state.description} />
-        <input type="date" name="due_date" onChange={this.setValue} value={this.state.due_date} />
-        <LabelsSelectorContainer name="labels" display={['name']} selected={this.state.labels} add={this.addItem} remove={this.removeItem} />
-        <MembersSelectorContainer name="assignees" display={['name', 'username']} selected={this.state.assignees} add={this.addItem} remove={this.removeItem} />
-        <button onClick={this.submit}>Save</button>
-      </div>
+      <FormBox>
+        <Label htmlFor='name'>Card name</Label>
+        <Input placeholder="Enter card name" id="name" name="name" onChange={this.setValue} type="text" value={this.state.name} />
+        <Label htmlFor='description'>Card Description (Markdown syntax)</Label>
+        <Textarea placeholder="Enter card description" row="10" name="description" id="description" onChange={this.setValue} value={this.state.description} />
+        <Label htmlFor='due_date'>Due date</Label>
+        <Input type="date" name="due_date" id="due_date" onChange={this.setValue} value={this.state.due_date} />
+        <LabelsSelectorContainer name="labels" title="Labels" display={['name']} selected={this.state.labels} add={this.addItem} remove={this.removeItem} />
+        <MembersSelectorContainer name="assignees" title="Assignees" display={['name', 'username']} selected={this.state.assignees} add={this.addItem} remove={this.removeItem} />
+        <Button onClick={this.submit}>Save</Button>
+      </FormBox>
      );
   }
 }

@@ -1,5 +1,6 @@
 import axios from "axios";
 import { base_url } from './../../../helpers/env';
+import { setSuccess } from "..";
 
 const requestParams = {
   params: {
@@ -40,7 +41,7 @@ export function createComment({board_id, card_id, description}){
   return dispatch => {
     axios.post(`${base_url}/boards/${board_id}/cards/${card_id}/comments`, requestData , requestHeader).then(response => {
       if(response.status === 201){
-        alert('Comment has been created!')
+        dispatch(setSuccess());
       }else{
         console.error(response.data.message);
       }

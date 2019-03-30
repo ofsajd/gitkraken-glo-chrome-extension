@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import ListItemComponent from '../Common/ListItem';
-import NewBoardComponent from './../Common/NewListItem';
+import NewListItemComponent from './../Common/NewListItem';
 import Column from '../../models/Column';
 import Board from '../../models/Board';
+import { ListBox } from '../Common/styles/index';
+import { Headline2 } from '../../styles/common/Headlines';
 
 export default class ColumnsListComponent extends Component {
   constructor(props) {
@@ -37,11 +39,11 @@ export default class ColumnsListComponent extends Component {
   render() { 
     const { createColumn } = this.props;
     return ( 
-      <div>
-        <h1>Columns</h1>
-        <NewBoardComponent createHandler={createColumn} />
+      <ListBox>
+        <Headline2>Create or select column</Headline2>
+        <NewListItemComponent createHandler={createColumn} plceholder="Enter column name" label="Save" />
         { this.content }
-      </div>
+      </ListBox>
      );
   }
 }

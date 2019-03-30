@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import BoardsListContainer from '../../containers/BoardsList';
 import ColumnsListContainer from '../../containers/ColumnsList';
@@ -15,14 +15,37 @@ export default class NewComment extends Component{
     }
   }
 
+  componentDidMount(){
+    const { setCurrentStep } = this.props;
+    setCurrentStep('boardsList');
+  }
+
+  get renderComponent(){
+    const { currentStep } = this.props;
+    return typeof(this[currentStep]) != 'undefined' ? this[currentStep] : this.boardsList;
+  }
+
+  get boardsList(){
+    return <BoardsListContainer next="columnsList" />
+  }
+
+  get columnsList(){
+    return <ColumnsListContainer withCardsReceive={true}  next="cardsList" prev="boardsList"  />
+  }
+
+  get cardsList(){
+    return <CardsListContainer next="newCommentForm" prev="columnsList" />
+  }
+
+  get newCommentForm(){
+    return <NewCommentFormContainer prev="cardsList" {...this.props} />
+  }
+
   render(){
     return (
-      <div>
-        <BoardsListContainer />
-        <ColumnsListContainer withCardsReceive={true} />
-        <CardsListContainer />
-        <NewCommentFormContainer {...this.props} />
-      </div>
+      <Fragment>
+        { this.renderComponent }
+      </Fragment>
     )
   }
 }

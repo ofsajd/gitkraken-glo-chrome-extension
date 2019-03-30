@@ -1,18 +1,23 @@
 export default class Color {
   constructor({
-    red,
-    green,
-    blue,
-    alpha
+    r,
+    g,
+    b,
+    a
   } = {
-    red: 0,
-    green: 0,
-    blue: 0,
-    alpha: 1
+    r: 0,
+    g: 0,
+    b: 0,
+    a: 1
   }) {
-    this.red = red;
-    this.green = green;
-    this.blue = blue;
-    this.alpha = alpha;
+    this.red = r;
+    this.green = g;
+    this.blue = b;
+    this.alpha = a;
+  }
+
+  get rgba(){
+    console.log(this);
+    return `rgba(${this.red}, ${this.green}, ${this.blue}, ${this.alpha})`;
   }
 }

@@ -1,6 +1,9 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import SelectorItem from './item';
+import { SelectorBox } from './styles';
+import { Label } from './../../styles/common/Inputs';
+import Color from '../../models/Color';
 
 class Selector extends Component{
   constructor(props){
@@ -27,22 +30,28 @@ class Selector extends Component{
     return items.map((item, index) => {
       const key = display.filter(l => typeof(item[l]) != 'undefined')[0] || null;
       const label = key ? item[key] : '';
+      const color = typeof(item.color) != 'undefined' ? new Color(item.color).rgba : false;
       return (
         <SelectorItem 
           key={index} 
           label={label} 
           isSelected={this.isSelected(item)} 
           clickHandler={() => this.toggleSelection(item)} 
+          color={color}
         />
       );
     });
   }
 
   render(){
+    const { title } = this.props;
     return (
-      <div>
-        { this.itemsList }
-      </div>
+      <Fragment>
+        <Label>{ title }</Label>
+        <SelectorBox>
+          { this.itemsList }
+        </SelectorBox>
+      </Fragment>
     )
   }
 }
