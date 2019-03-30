@@ -1,4 +1,4 @@
-import actions from "../../../enum/actions";
+import actions from "../../../constsants/actions";
 
 const members = (state = [], action) => {
   switch(action.type){

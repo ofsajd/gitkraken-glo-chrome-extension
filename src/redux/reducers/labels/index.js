@@ -1,4 +1,4 @@
-import actions from "../../../enum/actions";
+import actions from "../../../constsants/actions";
 
 const labels = (state = [], action) => {
   switch(action.type){

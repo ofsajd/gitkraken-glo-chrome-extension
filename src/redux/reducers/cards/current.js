@@ -1,4 +1,4 @@
-import actions from "../../../enum/actions";
+import actions from "../../../constsants/actions";
 import Card from "../../../models/Card";
 
 const currentCard = (state = new Card(), action) => {

@@ -6,6 +6,8 @@ import SignInContainer from '../../containers/SignInContainer';
 import NewCardContainer from '../../containers/NewCard';
 import NewCommentContainer from '../../containers/NewComment';
 import ScreenshotContainer from '../../containers/Screenshot';
+import { App } from './styles/index';
+import { Headline1 } from '../../styles/common/Headlines';
 
 class MainComponent extends Component {
   constructor(props) {
@@ -61,10 +63,10 @@ class MainComponent extends Component {
 
   render() { 
     return ( 
-      <div>
-        <h1>Glo extension</h1>
+      <App>
+        <Headline1>GitKraken Glo Chrome extension</Headline1>
         { this.content }
-      </div>
+      </App>
      );
   }
 }

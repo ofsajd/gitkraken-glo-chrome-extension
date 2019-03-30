@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import NewCommentFormContainer from '../../components/NewComment';
+import NewCommentFormContainer from '../../containers/NewComment/Form';
 import { SketchField, Tools } from 'react-sketch';
 
 class ScreenshotFormComponent extends Component{

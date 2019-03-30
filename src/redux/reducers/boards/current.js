@@ -1,4 +1,4 @@
-import actions from "../../../enum/actions";
+import actions from "../../../constsants/actions";
 import Board from "../../../models/Board";
 
 const currentBoard = (state = new Board(), action) => {

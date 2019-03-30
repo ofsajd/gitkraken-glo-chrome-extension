@@ -1,5 +1,5 @@
 import { createAction } from 'redux-actions';
-import actions from './../../enum/actions';
+import actions from './../../constsants/actions';
 
 export const login = createAction(actions.LOGIN);
 export const logout = createAction(actions.LOGOUT);

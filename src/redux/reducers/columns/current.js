@@ -1,4 +1,4 @@
-import actions from "../../../enum/actions";
+import actions from "../../../constsants/actions";
 import Column from "../../../models/Column";
 
 const currentColumn = (state = new Column(), action) => {

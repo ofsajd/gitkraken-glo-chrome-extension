@@ -5,7 +5,7 @@ import { isProduction, client_id, client_secret } from './../../helpers/env';
 import PropTypes from 'prop-types';
 
 import logo from './../../logo.svg';
-import './../../App.css';
+import { Button } from '../../styles/common/Buttons';
 
 export default class SignInComponent extends Component {
   constructor(props) {
@@ -32,12 +32,9 @@ export default class SignInComponent extends Component {
 
   render() { 
     return ( 
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <button onClick={this.authenticate}>
-          Sign in
-        </button>
-      </header>
+      <Button onClick={this.authenticate}>
+        Sign in
+      </Button>
      );
   }
 }
