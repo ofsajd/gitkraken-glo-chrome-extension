@@ -12,6 +12,7 @@ export const Button = styled.button`
   cursor: pointer;
   transition: all .2s ease-in-out;
   text-transform: uppercase;
+  opacity: ${props => props.active === false ? .5 : 1}
   &:hover{
     background-color: ${props => props.theme.color.button_background_hover}
   }

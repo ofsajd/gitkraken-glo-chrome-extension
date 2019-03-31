@@ -6,6 +6,7 @@ import { Label, Textarea } from '../../styles/common/Inputs';
 import { Header } from '../../styles/common/Header';
 import { BackButton } from '../../styles/common/Buttons';
 import { Headline2 } from '../../styles/common/Headlines';
+import { ToolsBox } from './styles/index';
 
 class ScreenshotFormComponent extends Component{
   constructor(props){
@@ -13,6 +14,8 @@ class ScreenshotFormComponent extends Component{
     this.state = {
       description: '',
       currentTool: Tools.Pencil,
+      fillColor: 'transparent',
+      lineColor: '#000',
       scaleX: 0,
       scaleY: 0,
       height: 600,
@@ -20,6 +23,11 @@ class ScreenshotFormComponent extends Component{
     this.image = new Image();
     this.image.onload = this.imageLoaded.bind(this);
     this.setTool = this.setTool.bind(this);
+    this.setFillColor = this.setFillColor.bind(this);
+    this.setLineColor = this.setLineColor.bind(this);
+    this.isActiveFillColor = this.isActiveFillColor.bind(this);
+    this.isActiveLineColor = this.isActiveLineColor.bind(this);
+    this.isActiveTool = this.isActiveTool.bind(this);
     this.save = this.save.bind(this);
     this.setValue = this.setValue.bind(this);
   }
@@ -69,6 +77,30 @@ class ScreenshotFormComponent extends Component{
     });
   }
 
+  setFillColor(color){
+    this.setState({
+      fillColor: color
+    });
+  }
+
+  setLineColor(color){
+    this.setState({
+      lineColor: color
+    });
+  }
+
+  isActiveTool(name){
+    return name === this.state.currentTool;
+  }
+
+  isActiveFillColor(color){
+    return color === this.state.fillColor;
+  }
+
+  isActiveLineColor(color){
+    return color === this.state.lineColor;
+  }
+
   render(){
     const { prev, goBack } = this.props;
     const backButton = prev ? (<BackButton onClick={goBack}></BackButton>) : '';
@@ -78,16 +110,37 @@ class ScreenshotFormComponent extends Component{
           { backButton }
           <Headline2>Create comment with screenshot</Headline2>
         </Header>
-        <Button onClick={() => {this.setTool(Tools.Pencil)}}>Pencil</Button>
-        <Button onClick={() => {this.setTool(Tools.Line)}}>Line</Button>
-        <Button onClick={() => {this.setTool(Tools.Rectangle)}}>Rectangle</Button>
-        <Button onClick={() => {this.setTool(Tools.Circle)}}>Circle</Button>
+        <Label>Image edit tools</Label>
+        <ToolsBox>
+          <Button active={this.isActiveTool(Tools.Pencil)} onClick={() => {this.setTool(Tools.Pencil)}}>Pencil</Button>
+          <Button active={this.isActiveTool(Tools.Line)} onClick={() => {this.setTool(Tools.Line)}}>Line</Button>
+          <Button active={this.isActiveTool(Tools.Rectangle)} onClick={() => {this.setTool(Tools.Rectangle)}}>Rectangle</Button>
+          <Button active={this.isActiveTool(Tools.Circle)} onClick={() => {this.setTool(Tools.Circle)}}>Circle</Button>
+        </ToolsBox>
+        <Label>Image fill color</Label>
+        <ToolsBox>
+          <Button active={this.isActiveFillColor('red')} onClick={() => {this.setFillColor('red')}}>Red</Button>
+          <Button active={this.isActiveFillColor('black')} onClick={() => {this.setFillColor('black')}}>Black</Button>
+          <Button active={this.isActiveFillColor('green')} onClick={() => {this.setFillColor('green')}}>Green</Button>
+          <Button active={this.isActiveFillColor('yellow')} onClick={() => {this.setFillColor('yellow')}}>Yellow</Button>
+          <Button active={this.isActiveFillColor('wite')} onClick={() => {this.setFillColor('wite')}}>White</Button>
+        </ToolsBox>
+        <Label>Image line color</Label>
+        <ToolsBox>
+          <Button active={this.isActiveLineColor('red')} onClick={() => {this.setLineColor('red')}}>Red</Button>
+          <Button active={this.isActiveLineColor('black')} onClick={() => {this.setLineColor('black')}}>Black</Button>
+          <Button active={this.isActiveLineColor('green')} onClick={() => {this.setLineColor('green')}}>Green</Button>
+          <Button active={this.isActiveLineColor('yellow')} onClick={() => {this.setLineColor('yellow')}}>Yellow</Button>
+          <Button active={this.isActiveLineColor('wite')} onClick={() => {this.setLineColor('wite')}}>White</Button>
+        </ToolsBox>
         <SketchField 
           name='sketch'
           ref={c => (this.sketch = c)}
           tool={this.state.currentTool}
           lineColor='black'
           height={this.state.height}
+          fillColor={this.state.fillColor}
+          lineColor={this.state.lineColor}
           lineWidth={3}
         />
         <Label htmlFor='description'>Card Description (Markdown syntax)</Label>
