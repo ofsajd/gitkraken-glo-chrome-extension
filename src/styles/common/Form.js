@@ -7,3 +7,9 @@ export const FormBox = styled.div`
   justify-content: stretch;
   width: 100%;
 `;
+
+export const Divider = styled.div`
+  width: 100%;
+  height: 1rem;
+  display: flex;
+`
