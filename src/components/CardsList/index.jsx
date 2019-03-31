@@ -6,6 +6,8 @@ import Column from '../../models/Column';
 import Board from '../../models/Board';
 import { ListBox } from '../Common/styles/index';
 import { Headline2 } from '../../styles/common/Headlines';
+import { BackButton } from '../../styles/common/Buttons';
+import { Header } from '../../styles/common/Header';
 
 export default class CardsListComponent extends Component {
   constructor(props) {
@@ -23,9 +25,14 @@ export default class CardsListComponent extends Component {
   }
 
   render() { 
+    const { prev, goBack } = this.props;
+    const backButton = prev ? (<BackButton onClick={goBack}></BackButton>) : '';
     return ( 
       <ListBox>
-        <Headline2>cards</Headline2>
+        <Header>
+          { backButton }
+          <Headline2>Select card</Headline2>
+        </Header>
         { this.content }
       </ListBox>
      );

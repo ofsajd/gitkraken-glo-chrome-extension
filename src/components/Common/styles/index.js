@@ -63,6 +63,7 @@ export const PopupBox = styled.div`
   background-color: ${props => props.theme.color.background};
   display: flex;
   box-shadow: #000 0 0 10px;
+  z-index: 99999;
   ${Button}{
     margin-top: 1rem;
   }

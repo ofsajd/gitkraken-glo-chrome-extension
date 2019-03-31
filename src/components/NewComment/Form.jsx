@@ -3,6 +3,9 @@ import PropTypes from 'prop-types';
 import { Textarea, Label } from '../../styles/common/Inputs';
 import { Button } from '../../styles/common/Buttons';
 import { FormBox } from '../../styles/common/Form';
+import { Header } from '../../styles/common/Header';
+import { BackButton } from '../../styles/common/Buttons';
+import { Headline2 } from '../../styles/common/Headlines';
 
 class NewCommentForm extends Component {
   constructor(props) {
@@ -54,8 +57,14 @@ class NewCommentForm extends Component {
   }
 
   render() { 
+    const { prev, goBack } = this.props;
+    const backButton = prev ? (<BackButton onClick={goBack}></BackButton>) : '';
     return ( 
       <FormBox>
+        <Header>
+          { backButton }
+          <Headline2>Create comment </Headline2>
+        </Header>
         <Label htmlFor='description'>Card Description (Markdown syntax)</Label>
         <Textarea placeholder="Enter card description" row="10" name="description" id="description" onChange={this.setValue} value={this.state.description} />
         <Button onClick={this.submit}>Save</Button>

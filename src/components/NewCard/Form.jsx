@@ -3,8 +3,10 @@ import PropTypes from 'prop-types';
 import LabelsSelectorContainer from '../../containers/Selectors/Labels';
 import MembersSelectorContainer from '../../containers/Selectors/Members';
 import { Input, Textarea, Label } from '../../styles/common/Inputs';
-import { Button } from '../../styles/common/Buttons';
+import { Button, BackButton } from '../../styles/common/Buttons';
 import { FormBox } from '../../styles/common/Form';
+import { Headline2 } from '../../styles/common/Headlines';
+import { Header } from '../../styles/common/Header';
 
 class NewCardForm extends Component {
   constructor(props) {
@@ -69,13 +71,23 @@ class NewCardForm extends Component {
   }
 
   submit(){
-    const { currentBoard, currentColumn } = this.props;
-    this.props.createCard({...this.state, boardId: currentBoard, columnId: currentColumn});
+    if(this.state.name === ''){
+      alert('Please enter card name.');
+    }else{
+      const { currentBoard, currentColumn } = this.props;
+      this.props.createCard({...this.state, board_id: currentBoard, column_id: currentColumn});
+    }
   }
 
   render() { 
+    const { prev, goBack } = this.props;
+    const backButton = prev ? (<BackButton onClick={goBack}></BackButton>) : '';
     return ( 
       <FormBox>
+        <Header>
+          { backButton }
+          <Headline2>Create comment </Headline2>
+        </Header>
         <Label htmlFor='name'>Card name</Label>
         <Input placeholder="Enter card name" id="name" name="name" onChange={this.setValue} type="text" value={this.state.name} />
         <Label htmlFor='description'>Card Description (Markdown syntax)</Label>

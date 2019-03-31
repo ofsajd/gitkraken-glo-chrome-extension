@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { setCurrentColumn, receiveCardsFromColumn, setCurrentStep } from './../../redux/actions';
+import { setCurrentColumn, receiveCardsFromColumn, setCurrentStep, createColumn } from './../../redux/actions';
 import ColumnsListComponent from '../../components/ColumnsList';
 
 const mapStateToProps = (state, props) => {
@@ -20,12 +20,19 @@ const mapDispatchToProps = (dispatch, props) => {
         dispatch(setCurrentStep(props.next));
       }
     },
+    goBack: () => {
+      dispatch(setCurrentStep(props.prev));
+    },
     selectColumnAndReceiveCards: (board, column) => {
       dispatch(setCurrentColumn(column));
       dispatch(receiveCardsFromColumn(board.id, column.id));
       if(props.next){
         dispatch(setCurrentStep(props.next));
       }
+    },
+    createColumn: (name, board_id) => {
+      console.log(name, board_id);
+      dispatch(createColumn(name, board_id));
     }
   }
 }

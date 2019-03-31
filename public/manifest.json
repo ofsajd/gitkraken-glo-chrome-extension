@@ -4,8 +4,8 @@
   "description": "...",
   "version": "0.0.1",
   "browser_action": {
-    "default_popup": "index.html",
-    "default_title": "Open app"
+    "default_popup": "popup.html",
+    "default_title": "GitKraken Glo"
   },
   "icons": { 
     "16": "logo-small.png",
@@ -14,7 +14,7 @@
   },
   "background": {
     "scripts": ["background.js"],
-    "persiste0nt": false
+    "persistent": true
   },
   "content_security_policy": "script-src 'self' 'sha256-5As4+3YpY62+l38PsxCEkjB1R4YtyktBtRScTJ3fyLU='; object-src 'self'", 
   "permissions": [

@@ -5,6 +5,9 @@ const columns = (state = [], action) => {
     case actions.SET_COLUMNS: {
       return action.payload;
     }
+    case actions.ADD_SINGLE_COLUMN: {
+      return [...state, action.payload];
+    }
     default:{
       return state;
     } 

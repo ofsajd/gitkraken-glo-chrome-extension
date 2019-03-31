@@ -15,6 +15,9 @@ const mapDispatchToProps = (dispatch, props) => {
     receiveBoards: () => {
       dispatch(receiveBoards());
     },
+    goBack: () => {
+      dispatch(setCurrentStep(props.prev));
+    },
     selectBoard: board => {
       dispatch(receiveBoard(board.id));
       if(props.next){

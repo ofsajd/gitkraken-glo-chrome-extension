@@ -51,7 +51,7 @@ class MainComponent extends Component {
   get authenticatedContent(){
     return this.state.mode && this[this.state.mode] ? (
       this[this.state.mode]
-    ) : 'No component';
+    ) : this.newCard;
   }
   
   get content(){

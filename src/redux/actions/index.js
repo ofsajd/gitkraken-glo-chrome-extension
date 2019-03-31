@@ -11,6 +11,7 @@ export const removeSingleBoard = createAction(actions.REMOVE_SINGLE_BOARD);
 export const setCurrentBoard = createAction(actions.SET_CURRENT_BOARD);
 
 export const setColumns = createAction(actions.SET_COLUMNS);
+export const addSingleColumn = createAction(actions.ADD_SINGLE_COLUMN);
 export const setCurrentColumn = createAction(actions.SET_CURRENT_COLUMN);
 
 export const setCards = createAction(actions.SET_CARDS);
@@ -29,3 +30,4 @@ export * from './Boards';
 export * from './Cards';
 export * from './Comments';
 export * from './Attachments';
+export * from './Columns';

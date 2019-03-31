@@ -13,26 +13,30 @@ export default class NewListItemComponent extends Component{
     }
 
     this.setName = this.setName.bind(this);
-    this.createBoard = this.createBoard.bind(this);
+    this.createItem = this.createItem.bind(this);
   }
 
   setName(e){
     this.setState({name: e.target.value})
   }
 
-  createBoard(){
+  createItem(){
     const { createHandler } = this.props;
-    createHandler(this.state.name);
+    if(this.state.name === ''){
+      alert('Please enter name.');
+    }else{
+      createHandler(this.state.name);
+    }
   }
 
   render(){
-    const {placeholder, label} = this.props;
+    const {placeholder, label, newItemLabel} = this.props;
     return (
       <Fragment>
-        <Label htmlFor='name'>Card name</Label>
+        <Label htmlFor='name'>{ newItemLabel }</Label>
         <NewListItemBox>
           <Input placeholder={placeholder} type="text" value={this.state.name} onChange={this.setName} />
-          <Button onClick={this.createBoard}>{label}</Button> 
+          <Button onClick={this.createItem}>{label}</Button> 
         </NewListItemBox>
       </Fragment>
     )
@@ -42,11 +46,13 @@ export default class NewListItemComponent extends Component{
 NewListItemComponent.propTypes = {
   placeholder: PropTypes.string,
   label: PropTypes.string,
+  newItemLabel: PropTypes.string,
   createHandler: PropTypes.func,
 }
 
 NewListItemComponent.defaultProps = {
   placeholder: '',
   label: '',
+  newItemLabel: '',
   createHandler: () => {},
 }

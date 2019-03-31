@@ -12,6 +12,35 @@ chrome.runtime.onMessage.addListener(async request => {
     });
     return true;
   }
+
+  chrome.tabs.query({
+    active: true,
+    lastFocusedWindow: true
+  }, function(tabs) {
+    var tab = tabs[0];
+    if(request.newCard){
+      const info = {
+        menuItemId: 'newCard',
+        pageUrl: tab.url,
+      }
+      openPopup(info);
+    }
+    if(request.newComment){
+      const info = {
+        menuItemId: 'newComment',
+        pageUrl: tab.url,
+      }
+      openPopup(info);
+    }
+    if(request.screenshot){
+      const info = {
+        menuItemId: 'screenshot',
+        pageUrl: tab.url,
+      }
+      takeScreenshot(info);
+    }
+  });
+    
 });
 
 
@@ -30,12 +59,18 @@ function openPopup(info){
 }
 
 function takeScreenshot(info){
-  chrome.tabs.captureVisibleTab(null, {}, function (image) {
-    var win = window.open("index.html", "extension_popup", "width=600,height=600,status=no,scrollbars=yes,resizable=no");
-    win.onload = function() {
-      info.image = image;
-      chrome.runtime.sendMessage(info);
-    }
+  chrome.tabs.query({
+    active: true, 
+    currentWindow: true 
+  },
+  function (tabs) {
+    chrome.tabs.captureVisibleTab(chrome.windows.WINDOW_ID_CURRENT, {}, function (image) {
+      var win = window.open("index.html", "extension_popup", "width=600,height=600,status=no,scrollbars=yes,resizable=no");
+      win.onload = function() {
+        info.image = image;
+        chrome.runtime.sendMessage(info);
+      }
+    });
   });
 }
 

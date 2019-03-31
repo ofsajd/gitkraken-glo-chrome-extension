@@ -20,7 +20,10 @@ const mapDispatchToProps = (dispatch, props) => {
       if(props.next){
         dispatch(setCurrentStep(props.next));
       }
-    }
+    },
+    goBack: () => {
+      dispatch(setCurrentStep(props.prev));
+    },
   }
 }
 

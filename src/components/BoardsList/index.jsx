@@ -5,6 +5,8 @@ import NewListItemComponent from '../Common/NewListItem';
 import Board from '../../models/Board';
 import { ListBox } from '../Common/styles';
 import { Headline2 } from '../../styles/common/Headlines';
+import { Header } from '../../styles/common/Header';
+import { BackButton } from '../../styles/common/Buttons';
 
 export default class BoardsListComponent extends Component {
   constructor(props) {
@@ -24,13 +26,17 @@ export default class BoardsListComponent extends Component {
       )
     });
   }
-
+  
   render() { 
-    const { createBoard } = this.props;
+    const { createBoard, prev, goBack } = this.props;
+    const backButton = prev ? (<BackButton onClick={goBack}></BackButton>) : '';
     return ( 
       <ListBox>
-        <Headline2>Create or select board</Headline2>
-        <NewListItemComponent createHandler={createBoard} placehodler="Enter board name" label="save" />
+        <Header>
+          { backButton }
+          <Headline2>Create or select board</Headline2>
+        </Header>
+        <NewListItemComponent createHandler={createBoard} placehodler="Enter board name" label="save" newItemLabel="Create new board" />
         { this.content }
       </ListBox>
      );

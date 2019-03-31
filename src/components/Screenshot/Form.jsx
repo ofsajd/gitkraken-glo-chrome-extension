@@ -3,6 +3,9 @@ import { SketchField, Tools } from 'react-sketch';
 import { Button } from '../../styles/common/Buttons';
 import { FormBox } from '../../styles/common/Form';
 import { Label, Textarea } from '../../styles/common/Inputs';
+import { Header } from '../../styles/common/Header';
+import { BackButton } from '../../styles/common/Buttons';
+import { Headline2 } from '../../styles/common/Headlines';
 
 class ScreenshotFormComponent extends Component{
   constructor(props){
@@ -16,7 +19,6 @@ class ScreenshotFormComponent extends Component{
   }
 
   componentDidMount(){
-    console.log(this.props);
     this.sketch.setBackgroundFromDataUrl(this.props.info.image, {
       stretchedY: true,
       stretchedX: true,
@@ -41,8 +43,14 @@ class ScreenshotFormComponent extends Component{
   }
 
   render(){
+    const { prev, goBack } = this.props;
+    const backButton = prev ? (<BackButton onClick={goBack}></BackButton>) : '';
     return (
       <FormBox>
+        <Header>
+          { backButton }
+          <Headline2>Create comment with screenshot</Headline2>
+        </Header>
         <SketchField 
           name='sketch'
           ref={c => (this.sketch = c)}

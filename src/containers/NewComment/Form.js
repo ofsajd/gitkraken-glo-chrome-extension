@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import NewCommentForm from '../../components/NewComment/Form';
-import { createComment } from '../../redux/actions';
+import { createComment, setCurrentStep } from '../../redux/actions';
 
 const mapStateToProps = (state, props) => {
   return {
@@ -11,11 +11,14 @@ const mapStateToProps = (state, props) => {
   }
 }
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = (dispatch, props) => {
   return {
     createComment: (data) => {
       dispatch(createComment(data));
-    }
+    },
+    goBack: () => {
+      dispatch(setCurrentStep(props.prev));
+    },
   }
 }
 

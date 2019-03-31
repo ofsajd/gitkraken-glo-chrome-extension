@@ -17,7 +17,6 @@ export default class Color {
   }
 
   get rgba(){
-    console.log(this);
     return `rgba(${this.red}, ${this.green}, ${this.blue}, ${this.alpha})`;
   }
 }

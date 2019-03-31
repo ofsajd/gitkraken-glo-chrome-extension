@@ -40,12 +40,10 @@ function b64toBlob(b64Data, contentType, sliceSize) {
 
 export function saveAttachment({board_id, card_id, file, description}){
   const formData = new FormData();
-  console.log(file);
   formData.append('file', b64toBlob(file, "image/png"));
   return dispatch => {
     axios.post(`${base_url}/boards/${board_id}/cards/${card_id}/attachments`, formData , requestHeader).then(response => {
       if(response.status === 201){
-        console.log(response.data);
         dispatch(createComment({board_id, card_id, description: `![Screenshot](${response.data.url}) \n ${description}`}))
       }else{
         console.error(response.data.message);

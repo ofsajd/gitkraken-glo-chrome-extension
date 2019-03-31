@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import NewCardForm from '../../components/NewCard/Form';
-import { createCard } from '../../redux/actions';
+import { createCard, setCurrentStep } from '../../redux/actions';
 
 const mapStateToProps = (state, props) => {
   return {
@@ -10,11 +10,14 @@ const mapStateToProps = (state, props) => {
   }
 }
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = (dispatch, props) => {
   return {
     createCard: (data) => {
       dispatch(createCard(data));
-    }
+    },
+    goBack: () => {
+      dispatch(setCurrentStep(props.prev));
+    },
   }
 }
 

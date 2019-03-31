@@ -34,7 +34,6 @@ export default class NewCard extends Component{
   }
 
   render(){
-    console.log("NEWCAR.PROPS", this.props);
     return (
       <Fragment>
         { this.renderComponent }

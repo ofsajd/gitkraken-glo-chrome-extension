@@ -21,7 +21,6 @@ export function receiveCommentsFromCard(board_id, card_id){
   return dispatch => {
     axios.get(`${base_url}/boards/${board_id}/cards/${card_id}/comments`, requestParams).then(response => {
       if(response.status === 200){
-        console.log(response.data);
         // dispatch(setCards(response.data));
       }else{
         console.error(response.data.message);

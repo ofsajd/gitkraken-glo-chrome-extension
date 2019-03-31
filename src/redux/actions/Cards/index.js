@@ -33,19 +33,19 @@ export function receiveCardsFromColumn(board_id, column_id){
   }
 }
 
-export function createCard({boardId, name, description, columnId, assignees, labels, due_date}){
+export function createCard({board_id, name, description, column_id, assignees, labels, due_date}){
   const requestData ={
     name,
     description: {
       text: description
     },
-    column_id: columnId,
+    column_id: column_id,
     assignees,
     labels,
     due_date,
   };
   return dispatch => {
-    axios.post(`${base_url}/boards/${boardId}/cards`, requestData , requestHeader).then(response => {
+    axios.post(`${base_url}/boards/${board_id}/cards`, requestData , requestHeader).then(response => {
       if(response.status === 201){
         dispatch(setSuccess());
       }else{

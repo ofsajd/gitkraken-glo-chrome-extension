@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { SelectorButton } from './styles';
 
 const SelectorItem = ({label, isSelected, clickHandler, color}) => {
-  console.log(color);
   return (
     <SelectorButton onClick={clickHandler} isSelected={isSelected} color={color} >
       { label }

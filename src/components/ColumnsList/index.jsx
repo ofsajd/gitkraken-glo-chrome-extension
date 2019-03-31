@@ -6,12 +6,15 @@ import Column from '../../models/Column';
 import Board from '../../models/Board';
 import { ListBox } from '../Common/styles/index';
 import { Headline2 } from '../../styles/common/Headlines';
+import { BackButton } from '../../styles/common/Buttons';
+import { Header } from '../../styles/common/Header';
 
 export default class ColumnsListComponent extends Component {
   constructor(props) {
     super(props);
     this.state = {  }
     this.handleSelect = this.handleSelect.bind(this);
+    this.createColumn = this.createColumn.bind(this);
   }
 
   handleSelect(column){
@@ -33,15 +36,20 @@ export default class ColumnsListComponent extends Component {
   }
 
   createColumn(name){
-    console.log(name);
+    const { createColumn, currentBoard } = this.props;
+    createColumn(name, currentBoard.id);
   }
 
   render() { 
-    const { createColumn } = this.props;
+    const { prev, goBack  } = this.props;
+    const backButton = prev ? (<BackButton onClick={goBack}></BackButton>) : '';
     return ( 
       <ListBox>
-        <Headline2>Create or select column</Headline2>
-        <NewListItemComponent createHandler={createColumn} plceholder="Enter column name" label="Save" />
+        <Header>
+          { backButton }
+          <Headline2>Create or select column</Headline2>
+        </Header>
+        <NewListItemComponent createHandler={this.createColumn} plceholder="Enter column name" label="Save"  newItemLabel="Create new column" />
         { this.content }
       </ListBox>
      );

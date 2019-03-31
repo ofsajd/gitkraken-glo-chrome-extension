@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { saveAttachment, setCurrentStep } from '../../redux/actions';
+import { setCurrentStep } from '../../redux/actions';
 import ScreenshotComponent from '../../components/Screenshot';
 
 const mapStateToProps = (state, props) => {
@@ -12,11 +12,14 @@ const mapStateToProps = (state, props) => {
   }
 }
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = (dispatch, props) => {
   return {
-    setCurrentStep: (stepName) => {
-      dispatch(setCurrentStep(stepName));
-    }
+    setCurrentStep: (name) => {
+      dispatch(setCurrentStep(name));
+    },
+    goBack: () => {
+      dispatch(setCurrentStep(props.prev));
+    },
   }
 }
 

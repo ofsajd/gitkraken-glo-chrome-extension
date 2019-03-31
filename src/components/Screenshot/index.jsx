@@ -29,7 +29,7 @@ class ScreenshotComponent extends Component {
   }
 
   get cardsList(){
-    return <CardsListContainer next="screenshotForm" prev="columnsList" />
+    return <CardsListContainer next="screenshotForm" altNext="screenshotCardForm" prev="columnsList" />
   }
 
   get screenshotForm(){
